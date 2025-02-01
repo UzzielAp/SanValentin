@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Ti ❤️</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: #fff;
+            flex-direction: column;
+            transition: background 1s ease-in-out;
+        }
+        .container {
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+        .cards {
+            display: flex;
+            gap: 10px;
+            transition: opacity 1s;
+        }
+        .card {
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            color: black;
+        }
+        h1 {
+            font-size: 24px;
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        #message {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+            opacity: 0;
+            transition: opacity 2s;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.9);
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+        button {
+            background: #ff758c;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+            margin: 10px;
+        }
+        button:hover {
+            background: #ff4a6e;
+        }
+        #choices {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="mainContent">
+        <h1>Para la persona más Hermosa ❤️</h1>
+        <button onclick="showSurprise()">Haz clic aquí 💕</button>
+    </div>
+    <div class="cards" id="photoGallery">
+        <div class="card"><img src="IMG/1723071844900.jpg" alt="Foto 1" width="100"><br><h5>Te Amo Muchisimo</h5></div>
+        <div class="card"><img src="IMG/Uzzi.jpg" alt="Foto 2" width="100"><br><h5>Eres el amor de mi vida</h5></div>
+        <div class="card"><img src="IMG/Eli.jpg" alt="Foto 3" width="100"><br><h5>Princesa Feliz</h5></div>
+    </div>
+    <div id="message">
+        ¿Quieres ser mi San Valentín? ❤️🥰
+        <div id="choices">
+            <button onclick="celebrate()">Sí</button>
+            <button onclick="changeToYes()" class="no">No</button>
+        </div>
+    </div>
+    <script>
+        function showSurprise() {
+            document.getElementById('mainContent').style.opacity = '0';
+            document.getElementById('photoGallery').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('mainContent').style.display = 'none';
+                document.getElementById('photoGallery').style.display = 'none';
+                document.body.style.background = "url('https://static.vecteezy.com/system/resources/previews/004/825/606/non_2x/valentine-day-background-in-paper-cut-style-with-copy-space-area-valentine-design-vector.jpg')";
+                document.body.style.backgroundSize = "cover";
+                document.getElementById('message').style.display = 'block';
+                document.getElementById('message').style.opacity = '1';
+                document.getElementById('choices').style.display = 'block';
+            }, 1000);
+        }
+
+        function celebrate() {
+            document.body.innerHTML = '<div id="confetti"></div>';
+            let confetti = document.getElementById('confetti');
+            confetti.style.position = 'fixed';
+            confetti.style.top = '0';
+            confetti.style.left = '0';
+            confetti.style.width = '100%';
+            confetti.style.height = '100%';
+            confetti.style.background = "url('confetti.gif') center center/cover";
+            setTimeout(() => {
+                document.body.innerHTML = `
+                    <div style="
+                        text-align: center; 
+                        padding: 20px; 
+                        background: rgba(255, 105, 180, 0.8); 
+                        border-radius: 10px;
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        box-shadow: 0 0 20px rgba(0,0,0,0.5);
+                    ">
+                        <h1 style="color: #fff; font-size: 36px; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">¡Te amo muchísimo! 💕🥰</h1>
+                        <iframe 
+                            width="560" 
+                            height="315" 
+                            src="https://www.youtube-nocookie.com/embed/VIDEO_ID?autoplay=1" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                        ></iframe>
+                    </div>
+                `;
+            }, 2000);
+        }
+        
+        function changeToYes() {
+            let noButton = document.querySelector('.no');
+            noButton.textContent = 'Sí';
+            noButton.onclick = celebrate;
+        }
+    </script>
+</body>
+</html>
+
